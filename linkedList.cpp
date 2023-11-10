@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 struct elem{
@@ -45,21 +46,22 @@ void list::print(){
         cerr << "list is empty\n";
         exit(1);
     }
+
     cout << "index: ";
     elem* curr = head;
     while(curr->next != head){
-        cout << curr->id << " ";
+        cout << setw(5) << curr->id << " ";
         curr = curr->next;
     }
-    cout << curr->id << endl;
+    cout << setw(5) << curr->id << endl;
     
     cout << "list:  ";
     curr = head;
     while(curr->next != head){
-        cout << curr->data << " ";
+        cout << setw(5) << curr->data << " ";
         curr = curr->next;
     }
-    cout << curr->data << endl;
+    cout << setw(5) << curr->data << endl << endl;
 }
 
 void list::clear(){
