@@ -70,7 +70,8 @@ void list::clear(){
         delete curr;
         curr = tmp;
     }
-    delete curr, tmp;
+    delete curr;
+    delete tmp;
     length = 0;
 }
 
@@ -95,7 +96,7 @@ void list::deleteById(int index){
         exit(1);
     }
     if (index == 0){
-        elem* curr = head->next, *newHead = head;
+        elem* curr = head->next;
         while(curr->next != head){
             curr->id--;
             curr = curr->next;
@@ -103,7 +104,7 @@ void list::deleteById(int index){
         curr->id--;
         curr->next = head->next;
         delete head;
-        head = newHead;
+        head = curr->next;
     } else if (index == length - 1){
         elem* curr = head;
         while(curr->next->next != head){
@@ -115,15 +116,16 @@ void list::deleteById(int index){
         elem* curr = head;
         bool flag = false;
         while(curr->next != head){
+            if (flag){
+                curr->id--;
+            }
             if (curr->next->id == index){
                 elem* temp = curr->next->next;
                 delete curr->next;
                 curr->next = temp;
-
+                flag = true;
             }
-            if (flag){
-                curr->id--;
-            }
+            
             curr = curr->next;
         }
         curr->id--;
@@ -133,7 +135,7 @@ void list::deleteById(int index){
 
 
 
-
+//main еще не готов, тут просто тест методов
 int main(){
     list a;
     for (int i = 0; i < 20; i++){
@@ -148,6 +150,6 @@ int main(){
     a.print();
     a.deleteById(0);
     a.print();
-    a.deleteById(20);
+    a.deleteById(18);
     a.print();
 }
