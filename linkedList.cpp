@@ -24,6 +24,13 @@ class list{
 
 //интерфейс взаимодействия с пользователем
 void menu(){
+    list list;
+    for (int i = 0; i < 20; i++){
+        list.append(20-i);
+    }
+    cout << "Изначальный список\n";
+    list.print();
+
     cout << "\tОперации со списком\n";
     cout << "\tДобавить элемент в конец - 1\n";
     cout << "\tНайти индекс элемента - 2\n";
@@ -33,7 +40,6 @@ void menu(){
     cout << "\tВыход - 6\n";
     
     int operation;
-    list list;
     while (true){
         cin >> operation;
         switch (operation)
